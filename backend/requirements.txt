@@ -1,0 +1,17 @@
+fastapi
+uvicorn
+langchain
+langchain-google-genai
+google-generativeai
+faiss-cpu
+numpy
+python-dotenv
+pydantic
+websockets
+sentence-transformers
+aiofiles
+python-multipart
+PyPDF2
+Pillow
+pikepdf
+

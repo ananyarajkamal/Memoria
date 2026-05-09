@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #10b981;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #059669;
+}
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-track {
+  background: #374151;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #10b981;
+}
+
+/* Base styles */
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Chat message animations */
+@keyframes messageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message-enter {
+  animation: messageSlideIn 0.3s ease-out;
+}
+
+/* Typing indicator */
+@keyframes typing {
+  0%, 60%, 100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-10px);
+  }
+}
+
+.typing-dot {
+  animation: typing 1.4s infinite;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* Button hover effects */
+.btn-emerald {
+  @apply bg-emerald-500 text-white px-4 py-2 rounded-lg font-medium transition-all duration-200 hover:bg-emerald-600 hover:shadow-lg active:scale-95;
+}
+
+.btn-emerald-outline {
+  @apply border-2 border-emerald-500 text-emerald-500 px-4 py-2 rounded-lg font-medium transition-all duration-200 hover:bg-emerald-50 hover:border-emerald-600 hover:text-emerald-600 active:scale-95;
+}
+
+/* Chat input styles */
+.chat-input {
+  @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition-all duration-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white;
+}
+
+/* Memory card styles */
+.memory-card {
+  @apply bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow duration-200;
+}
+
+/* Sidebar styles */
+.sidebar-item {
+  @apply px-4 py-3 rounded-lg cursor-pointer transition-all duration-200 hover:bg-emerald-50 dark:hover:bg-gray-700;
+}
+
+.sidebar-item.active {
+  @apply bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300;
+}
