@@ -59,6 +59,32 @@ class MemoryStore:
         except Exception as e:
             print(f"Error saving memory: {e}")
     
+    def add_memory(self, content: str, metadata: Optional[Dict] = None):
+        """Add a memory entry to storage"""
+        doc = Document(
+            page_content=content,
+            metadata={
+                "timestamp": metadata.get("timestamp", ""),
+                **(metadata or {})
+            }
+        )
+        
+        # Generate embedding
+        embedding = self.embedder.encode(content).tolist()
+        
+        # Convert to numpy array
+        embedding_array = np.array([embedding]).astype('float32')
+        
+        # Add to FAISS index
+        self.index.add(embedding_array)
+        
+        # Store document and embedding
+        self.documents.append(doc)
+        self.embeddings.append(embedding)
+        
+        # Save to disk
+        self._save_memory()
+    
     def add_conversation(self, user_message: str, ai_response: str, metadata: Optional[Dict] = None):
         """Add a conversation to memory"""
         # Create document with both user and AI messages
